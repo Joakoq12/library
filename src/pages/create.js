@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useAppContext} from '../store/store'
 
 export default function Create() {
   const [title, setTitle] = useState("");
@@ -7,6 +8,9 @@ export default function Create() {
   const [intro, setIntro] = useState("");
   const [completed, setCompleted] = useState(false);
   const [review, setReview] = useState("");
+
+
+  const store = useAppContext();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -33,6 +37,15 @@ export default function Create() {
     }}
 
     function handleOnChangeFile(e) {
+      const element = e.target; 
+      const file = element.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file); 
+
+      reader.onloadend = function () {
+        setCover(reader.result.toString());
+      }
       
 
   }
@@ -52,6 +65,8 @@ export default function Create() {
 
     };
 
+store.createItem(newBook);
+    
     //TODO: mandar a registrar libro
   }
 
@@ -81,7 +96,7 @@ export default function Create() {
         <div>
           <div>Cover</div>
           <input type="file" name="cover" onChange={handleOnChangeFile} />
-          <div></div>
+          <div>{!! cover ? <img src={cover} width='200px' alt="preview"/> : ''}</div>
 
           <div>
             <div>Introduccion</div>
