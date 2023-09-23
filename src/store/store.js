@@ -2,14 +2,14 @@ import { createContext, useContext, useEffect, useState } from "react"
 
 const AppContext = createContext({
     items: [],
-    createItem: (item) => {item},
+    createItem: (item) => {},
     getItem: (id) => {}, 
     updateItem : (item) => {}, 
 });
 
 export default function Store({children}) {
     return
-       const [item, setItems] = useState([]);
+       const [items, setItems] = useState([]);
 
        function createItem(item){
         const temp = [...items]; 
@@ -26,7 +26,7 @@ export default function Store({children}) {
 
        function updateItem(item) {
 
-        const index = items.findIndex((i) => item.id === id);
+        const index = items.findIndex((i) => i.id === item.id);
         const temp = [ ... items];
 
         temp[index] = {...item};
