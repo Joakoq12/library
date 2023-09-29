@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {useAppContext} from '../store/store'
+import {useAppContext} from '../store/store';
+import { Link } from "react-router-dom";
 
 export default function Create() {
   const [title, setTitle] = useState("");
@@ -72,6 +73,9 @@ store.createItem(newBook);
 
   return (
     <div>
+
+      <Link to='/'>Home</Link>
+      
       <form onSubmit={handleSubmit}>
         <div>
           <div>Title</div>
