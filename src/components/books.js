@@ -7,7 +7,7 @@ export default function Book({item}) {
      return (
 
         <div>
-            <Link>
+            <Link to={'/view/'}> 
             <img src={item.cover} width='200px' alt={item.title}></img>
             <div>{item.title}</div>
             </Link>
