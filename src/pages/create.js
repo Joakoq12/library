@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useAppContext} from '../store/store';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Create() {
   const [title, setTitle] = useState("");
@@ -9,6 +9,37 @@ export default function Create() {
   const [intro, setIntro] = useState("");
   const [completed, setCompleted] = useState(false);
   const [review, setReview] = useState("");
+
+  const navigate = useNavigate();
+
+  const inputStyles = {
+       formContainer: {
+        width: '400px',
+        margin: '0x auto',
+       },
+       container: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
+        margin: '15px 0',
+       },
+       title: {
+        fontSize: '16px',
+        textAlign: 'left',
+        color: 'white', 
+       },
+       input: {
+        padding: '10px',
+        borderRadius: '5px',
+        fontSize: '16px',
+       }, 
+
+
+
+
+
+
+  };
 
 
   const store = useAppContext();
@@ -67,39 +98,44 @@ export default function Create() {
     };
 
 store.createItem(newBook);
+navigate('/');
     
     //TODO: mandar a registrar libro
   }
 
   return (
-    <div>
-
-      <Link to='/'>Home</Link>
+   
       
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div>Title</div>
+      <form onSubmit={handleSubmit} style={inputStyles.formContainer}>
+        <div style={inputStyles.container}>
+          <div style={inputStyles.title}>Title</div>
           <input
             type="text"
             name="title"
             onChange={handleChange}
             value={title}
+            style={inputStyles.input}
           />
         </div>
 
-        <div>
-          <div>Author</div>
+        <div style={inputStyles.container}>
+          <div style={inputStyles.title}>Author</div>
           <input
             type="text"
             name="author"
             onChange={handleChange}
             value={author}
+            style={inputStyles.input}
           />
         </div>
 
-        <div>
-          <div>Cover</div>
-          <input type="file" name="cover" onChange={handleOnChangeFile} />
+        <div style={inputStyles.container}>
+          <div style={inputStyles.title}> Cover</div>
+          <input 
+          type="file"
+           name="cover"
+            onChange={handleOnChangeFile}
+            style={inputStyles.input} />
           <div>{!! cover ? <img src={cover} width='200px' alt="preview"/> : ''}</div>
 
           <div>
@@ -134,8 +170,8 @@ store.createItem(newBook);
         </div>
 
 
-        <input type="submit" value='register book'/>
+        <input type="submit" value='register book' />
       </form>
-    </div>
+  
   );
 }
