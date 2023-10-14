@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {useAppContext} from '../store/store';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import   Layout  from '../components/layout';
 
 export default function Create() {
   const [title, setTitle] = useState("");
@@ -15,7 +16,8 @@ export default function Create() {
   const inputStyles = {
        formContainer: {
         width: '400px',
-        margin: '0x auto',
+        margin: '0 auto',
+        
        },
        container: {
         display: 'flex',
@@ -32,14 +34,19 @@ export default function Create() {
         padding: '10px',
         borderRadius: '5px',
         fontSize: '16px',
-       }, 
-
-
-
-
-
-
+       }
   };
+
+  const buttonStyle = {
+    padding: '15px 20px',
+    midWidth: '200px', 
+    border: 'none',
+    borderRadius: '5px',
+    backgroundColor: '#1e9638',
+    color: 'white',
+    fontWeight: 'bolder', 
+    fontSize: '18px',
+  }
 
 
   const store = useAppContext();
@@ -104,8 +111,8 @@ navigate('/');
   }
 
   return (
-   
-      
+      <Layout>
+            
       <form onSubmit={handleSubmit} style={inputStyles.formContainer}>
         <div style={inputStyles.container}>
           <div style={inputStyles.title}>Title</div>
@@ -138,40 +145,45 @@ navigate('/');
             style={inputStyles.input} />
           <div>{!! cover ? <img src={cover} width='200px' alt="preview"/> : ''}</div>
 
-          <div>
-            <div>Introduccion</div>
+          <div style={inputStyles.container}>
+            <div style={inputStyles.title}>Introduccion</div>
             <input
               type="text"
               name="intro"
               onChange={handleChange}
               value={intro}
+              style={inputStyles.input}
             />
           </div>
 
-          <div>
-            <div>Completed</div>
+          <div style={inputStyles.container}>
+            <div style={inputStyles.title}>Completed</div>
             <input
               type="checkbox"
               name="completed"
               onChange={handleChange}
               value={completed}
+              style={inputStyles.input}
             />
           </div>
 
-          <div>
-            <div>Review</div>
+          <div style={inputStyles.container}>
+            <div style={inputStyles.title}>Review</div>
             <input
               type="text"
               name="review"
               onChange={handleChange}
               value={review}
+              style={inputStyles.input}
             />
           </div>
         </div>
 
 
-        <input type="submit" value='register book' />
+        <input type="submit" value='register book' style={buttonStyle} />
       </form>
-  
+         
+       </Layout>
+
   );
 }
