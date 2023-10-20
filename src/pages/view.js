@@ -5,7 +5,7 @@
     import { useAppContext } from "../store/store";
     
     export default function View() {
-      const [item, setItem] = useState({});
+      const [item, setItem] = useState(null);
       const params = useParams();
       const store = useAppContext();
     
@@ -23,15 +23,25 @@
            margin: '0 auto', 
         },
     };
+
+    if (!item) {
+      return <Layout> Item not fount </Layout>;
+    }
     
       return (
-        <Layout style={itemStyles.container}>
+        <Layout >
+          <div style={itemStyles.container}>
+         <div>
+           <div>{item?.cover ? <img src={item?.cover} width="400" /> : ""}</div>
+          </div>
+          <div>
           <h2>{item?.title}</h2>
-          <div>{item?.cover ? <img src={item.cover} width="400" /> : ""}</div>
           <div>{item?.author}</div>
           <div>{item?.intro}</div>
           <div>{item?.completed ? "Completado" : "No terminado"}</div>
           <div>{item?.review}</div>
+          </div>
+          </div>
         </Layout>
       );
     }

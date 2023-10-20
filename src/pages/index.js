@@ -1,26 +1,30 @@
-
-import {useAppContext} from '../store/store';
-
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout';
 import Book from '../components/books';
 
-const booksContainer = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '10px',
-}
+import {useAppContext} from '../store/store';
+
 
 export default function Index() {
 
 const store = useAppContext()
 
-    return (<Layout>
 
+const booksContainer = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '10px',
+};
+
+    return (
+        <Layout>
         <div style={booksContainer}>
-    
-     {store.items.map((item) => <Book key={item.id} item={item}/>)}
-     </div>
-     </Layout>
-    )
+          {store.items.map((item) => (
+            <Book key={item.id} item={item} />
+          ))}
+        </div>
+      </Layout>
+
+    );
     
 }

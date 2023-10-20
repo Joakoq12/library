@@ -52,28 +52,24 @@ export default function Create() {
   const store = useAppContext();
 
   function handleChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    switch (name) {
+    switch (e.target.name) {
       case "title":
-        setTitle(value);
+        setTitle(e.target.value);
         break;
       case "author":
-        setAuthor(value);
+        setAuthor(e.target.value);
         break;
       case "intro":
-        setIntro(value);
+        setIntro(e.target.value);
         break;
-      case "completed":  
+      case "completed":
         setCompleted(e.target.checked);
         break;
       case "review":
-        setReview(value);
+        setReview(e.target.value);
         break;
-
-      default:
-    }}
+    }
+  }
 
     function handleOnChangeFile(e) {
       const element = e.target; 
