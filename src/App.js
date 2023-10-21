@@ -9,13 +9,15 @@ function App() {
   return (
   
       <Store>
-      <BrowserRouter>
+        <div className="App">
+      
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="create" element={<Create />} />
           <Route path="view/:bookId" element={<View />} />
         </Routes>
-      </BrowserRouter>
+    
+      </div>
       </Store>
   
   );

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import Layout from '../components/layout';
 import Book from '../components/books';
 
@@ -19,10 +19,10 @@ const booksContainer = {
     return (
         <Layout>
         <div style={booksContainer}>
-          {store.items.map((item) => (
-            <Book key={item.id} item={item} />
-          ))}
-        </div>
+        {store.items.map((item) => (
+          <Book key={item.id} item={item} />
+        ))}
+      </div>
       </Layout>
 
     );

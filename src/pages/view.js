@@ -5,7 +5,7 @@
     import { useAppContext } from "../store/store";
     
     export default function View() {
-      const [item, setItem] = useState(null);
+      const [item, setItem] = useState({});
       const params = useParams();
       const store = useAppContext();
     
@@ -23,10 +23,6 @@
            margin: '0 auto', 
         },
     };
-
-    if (!item) {
-      return <Layout> Item not fount </Layout>;
-    }
     
       return (
         <Layout >
